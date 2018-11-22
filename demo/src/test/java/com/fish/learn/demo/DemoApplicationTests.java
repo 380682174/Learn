@@ -6,10 +6,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -22,9 +19,21 @@ public class DemoApplicationTests {
     @Test
     public void contextLoads() {
 
-
-        testGroupingBy();
+        testSort();
+        //testGroupingBy();
         //testDistinct();
+    }
+
+    private void testSort() {
+
+        List<Student> students = new ArrayList<>();
+        students.add(new Student("zhangsan","nan",9,"福州"));
+        students.add(new Student("zhangsan2","nan",19,"福州"));
+        students.add(new Student("zhangsan3","nan",91,"福州2"));
+        students.add(new Student("zhangsan4","nv",20,"福州4"));
+        students.add(new Student("zhangsan","nan",9,"福州24"));
+
+        students.stream().sorted(Comparator.comparing(Student::getAge).reversed()).forEach(System.out::println);
     }
 
     private void testGroupingBy() {
