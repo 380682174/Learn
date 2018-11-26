@@ -1,5 +1,6 @@
 package com.fish.learn.demo;
 
+import com.fish.learn.demo.bean.Book;
 import com.fish.learn.demo.bean.Student;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,10 +19,31 @@ public class DemoApplicationTests {
 
     @Test
     public void contextLoads() {
-
-        testSort();
+        //testHashCode();
+        testDistinctObject();
+        //testSort();
         //testGroupingBy();
         //testDistinct();
+    }
+
+    private void testHashCode() {
+        System.out.println("啊啊啊啊hashCode:"+"1".hashCode());
+    }
+
+    private void testDistinctObject() {
+
+        List<Book> list = new ArrayList<>();
+        {
+            list.add(new Book("Core Java", 2001,"haoshu"));
+            list.add(new Book("Core Java", 200,"huaishu"));
+            list.add(new Book("Learning Freemarker", 150,"hao"));
+            list.add(new Book("Spring MVC", 300,null));
+            list.add(new Book("Spring MVC", 300,"好书"));
+        }
+        long l = list.stream().distinct().count();
+        System.out.println("No. of distinct books:"+l);
+        list.stream().distinct().forEach(b -> System.out.println(b.getName()+ "," + b.getPrice()));
+
     }
 
     private void testSort() {
