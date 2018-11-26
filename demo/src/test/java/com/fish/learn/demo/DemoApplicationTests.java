@@ -1,6 +1,7 @@
 package com.fish.learn.demo;
 
 import com.fish.learn.demo.bean.Book;
+import com.fish.learn.demo.bean.DateUtils;
 import com.fish.learn.demo.bean.Student;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,11 +20,26 @@ public class DemoApplicationTests {
 
     @Test
     public void contextLoads() {
+        testForeach();
         //testHashCode();
-        testDistinctObject();
+        //testDistinctObject();
         //testSort();
         //testGroupingBy();
         //testDistinct();
+    }
+
+    private void testForeach() {
+        List<Integer> ids = new ArrayList<>();
+        for(int i= 0;i<10000000;i++){
+            ids.add(i);
+        }
+
+        long cur = System.currentTimeMillis();
+        ids.stream().forEach(i -> {
+             if("a".equals("a")){ String a = "a";}
+        });
+        long cur2 = System.currentTimeMillis();
+        System.out.println("耗时："+DateUtils.getDistanceOfTwoDate(new Date(cur),new Date(cur2)));
     }
 
     private void testHashCode() {
