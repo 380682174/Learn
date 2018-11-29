@@ -12,10 +12,8 @@ public class ProducerTest {
 
     private static Logger logger = Logger.getLogger(ProducerTest.class);
 
-
     protected static Properties props = new Properties();
-    //protected static String kafka_server = "118.122.82.52:9092";
-    protected static String kafka_server = "192.168.24.249:9092";
+    protected static String kafka_server = "127.0.0.1:9092";
     protected static String topic = "topicName";
 
     static {
