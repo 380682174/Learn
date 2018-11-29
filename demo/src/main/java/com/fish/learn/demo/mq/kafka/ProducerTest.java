@@ -47,6 +47,7 @@ public class ProducerTest {
         TimeUnit.SECONDS.sleep(30);
         producer.close();
     }
+
     public static void send(KafkaProducer<String, String> producer, String v){
         producer.send(new ProducerRecord<String, String>(topic, v), new Callback() {
 
