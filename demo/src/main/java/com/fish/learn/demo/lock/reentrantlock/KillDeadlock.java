@@ -1,4 +1,4 @@
-package com.fish.learn.demo.lock;
+package com.fish.learn.demo.lock.reentrantlock;
 
 import java.util.concurrent.locks.ReentrantLock;
 /**
