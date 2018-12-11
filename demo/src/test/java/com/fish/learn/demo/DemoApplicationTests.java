@@ -3,6 +3,7 @@ package com.fish.learn.demo;
 import com.fish.learn.demo.bean.Book;
 import com.fish.learn.demo.bean.DateUtils;
 import com.fish.learn.demo.bean.Student;
+import com.google.common.collect.Lists;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,18 +15,59 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
 public class DemoApplicationTests {
 
-    @Test
+    /*@Test
     public void contextLoads() {
-        testForeach();
+        testList();
+        //testForeach();
         //testHashCode();
         //testDistinctObject();
         //testSort();
         //testGroupingBy();
         //testDistinct();
+    }*/
+
+    public static void main(String[] args) {
+        testList();
+    }
+
+    private static void testList() {
+        //排除上次有 本次没有的数据
+        List<String> list = Lists.newArrayList();
+        List<String> listBefore = Lists.newArrayList();
+        List<String> notFix = Lists.newArrayList();
+
+        listBefore.add("111");
+        listBefore.add("222");
+        listBefore.add("333");
+        listBefore.add("444");
+        listBefore.add("555");
+
+        list.add("111");
+        list.add("222");
+        list.add("333");
+        list.add("666");
+
+
+        for (int i = 0; i < list.size(); i++) {
+            if (listBefore.contains(list.get(i))) {
+                //上次有的 本次也有 则未修复
+                notFix.add(list.get(i));
+            }
+        }
+        for (int i = 0; i < list.size(); i++) {
+            if (!listBefore.contains(list.get(i))) {
+                //上次没有的本次有，并且排除误报提交的 则未修复
+                notFix.add(list.get(i));
+            }
+        }
+
+        notFix.stream().forEach(i->{
+            System.out.println(i);
+        });
     }
 
     private void testForeach() {
