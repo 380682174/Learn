@@ -8,7 +8,7 @@ package com.fish.learn.demo.designmodel.adapter.classadapter;
 public class HeadPhoneAdapter extends HeadPhone implements Iphone7 {
 
     @Override
-    void listenWithCommon() {
+    public void listenWithCommon() {
 
     }
 
