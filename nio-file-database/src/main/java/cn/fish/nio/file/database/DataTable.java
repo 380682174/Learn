@@ -105,6 +105,13 @@ public class DataTable<T extends Record> {
 
     }
 
+    /**
+     * 从channel中读取时间范围内的数据到buffer
+     * @param startTimeStamp
+     * @param endTimeStamp
+     * @return
+     * @throws Exception
+     */
     public ByteBuffer readDataAsByteBuffer(Long startTimeStamp, Long endTimeStamp) throws Exception {
         if (startTimeStamp != null && endTimeStamp != null && startTimeStamp > endTimeStamp) {
             throw new Exception("开始时间不能大于结束时间");
@@ -168,9 +175,11 @@ public class DataTable<T extends Record> {
                 if (startRecordNo > endRecordNo) {
                     return ByteBuffer.allocate(0);
                 }
+                //时间范围内的记录数目
                 int recordNum = endRecordNo - startRecordNo + 1;
                 ByteBuffer buffer = ByteBuffer.allocate(Math.min(recordNum, maxRecordNum) * this.recordSize);
                 ByteBuffer tmpBuffer = ByteBuffer.allocate(this.recordSize);
+                //计算间隔跳跃取点
                 double step = recordNum <= maxRecordNum ? 1 : recordNum / (double) maxRecordNum;
                 for (int i = 0, currentRecordNo = startRecordNo; buffer.position() < buffer.capacity(); i++) {
                     int recordNo = startRecordNo + (int) Math.floor(step * i);
